@@ -27,8 +27,8 @@ class Stats:
 
 class DataGeneratorCrop:
     def __init__(self,
-        imagedir = 'C:\Year_4_Courses\Masters_Project\DDH_Project\hip_images_marta\\', #insert here the directory where you store the hip images
-        csvFileCrop =  'C:\Year_4_Courses\Masters_Project\DDH_Project\\final_data.csv', #insert here the file location of the csv with the patient data
+        imagedir = 'C:\Year_4_Courses\Masters_Project\DDH_Project\src\hip_images_marta\\', #insert here the directory where you store the hip images
+        csvFileCrop =  'C:\Year_4_Courses\Masters_Project\DDH_Project\src\\final_data.csv', #insert here the file location of the csv with the patient data
         width = 128,    #insert here the image width
         height = 128,   #insert here the image height
         ratio1 = 0.8,   #this is the percentage for training, in this case 80%

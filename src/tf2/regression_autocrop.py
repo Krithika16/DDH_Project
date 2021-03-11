@@ -31,11 +31,11 @@ def AutoCrop():
 
   tensorboard = TensorBoard(log_dir = 'logs/{}'.format(NAME))
   #Training parameters
-  epochs = 7
+  epochs = 1
   #I think i will just go with batch gradient descent, seeing as I have less than 2000 observations - hence these won't be used
-  batch_size =  32
-  val_batch_size = 16#8
-  test_batch_size = 16#8
+  batch_size =  1
+  val_batch_size = 1#8
+  test_batch_size = 1#8
 
   data = DataGeneratorCrop(width = 256, height = 256)
 
