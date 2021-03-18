@@ -28,7 +28,6 @@ from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
 def AutoCrop():
 
   NAME = "Training_AC_7e_32batch_0.001alpha".format(int(time.time()))
-
   tensorboard = TensorBoard(log_dir = 'logs/{}'.format(NAME))
   #Training parameters
   epochs = 7
