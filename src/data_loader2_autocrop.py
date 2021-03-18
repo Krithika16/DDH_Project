@@ -27,10 +27,10 @@ class Stats:
 
 class DataGeneratorCrop:
     def __init__(self,
-        imagedir = 'C:\Year_4_Courses\Masters_Project\DDH_Project\src\hip_images_marta\\', #insert here the directory where you store the hip images
-        csvFileCrop =  'C:\Year_4_Courses\Masters_Project\DDH_Project\src\\final_data.csv', #insert here the file location of the csv with the patient data
-        width = 128,    #insert here the image width
-        height = 128,   #insert here the image height
+        imagedir = '/home/nealb/Documents/krithika/src/images/', #insert here the directory where you store the hip images
+        csvFileCrop =  '/home/nealb/Documents/krithika/final_data.csv', #insert here the file location of the csv with the patient data
+        width = 500,    #insert here the image width
+        height = 500,   #insert here the image height
         ratio1 = 0.8,   #this is the percentage for training, in this case 80%
         ratio2 = 0.1,   #this is the percentage for validation, 10% and hence the remaining 10% for testing
         #useBinaryClassify = True,   #we will be using a binary classification, 1 or 0 - FIGURE OUT WHAT IT WOULD BE FOR S
@@ -137,13 +137,11 @@ class DataGeneratorCrop:
             self.image_data, self.img_min, self.img_max = self.normalize(self.image_data)
             self.x_coordinate, self.x_coordinate_min, self.x_coordinate_max = self.normalize(self.x_coordinate)
             self.y_coordinate, self.y_coordinate_min, self.y_coordinate_max = self.normalize(self.y_coordinate)
-            print("HI")
 
         if self.useWhitening:
             self.image_data, self.img_mean, self.img_std = self.whiten(self.image_data)
             self.x_coordinate, self.x_coordinate_mean, self.x_coordinate_std = self.whiten(self.x_coordinate)
             self.y_coordinate, self.y_coordinate_mean, self.y_coordinate_std = self.whiten(self.y_coordinate)
-            print("HI1")
 
         # Split the image data into test/training/validation sets
         index1 = int(self.ratio1 * len(self.image_data)) # Split index

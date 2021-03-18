@@ -27,17 +27,17 @@ from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
 #Function to generate and train a neural network to autocrop the scans
 def AutoCrop():
 
-  NAME = "Training_AC_7e_32batch_0.0001alpha".format(int(time.time()))
+  NAME = "Training_AC_7e_32batch_0.001alpha".format(int(time.time()))
 
   tensorboard = TensorBoard(log_dir = 'logs/{}'.format(NAME))
   #Training parameters
-  epochs = 1
+  epochs = 7
   #I think i will just go with batch gradient descent, seeing as I have less than 2000 observations - hence these won't be used
-  batch_size =  1
-  val_batch_size = 1#8
-  test_batch_size = 1#8
+  batch_size =  32
+  val_batch_size = 16#8
+  test_batch_size = 16#8
 
-  data = DataGeneratorCrop(width = 256, height = 256)
+  data = DataGeneratorCrop(width = 500, height = 500)
 
   #Extracting the relevant data for train, val and test sets
   x_train = data.x_train
@@ -91,7 +91,7 @@ def AutoCrop():
   #do with the optimization process
   #A metric is a function used to judge the performance of your model. Metric functions are similar to loss functions, except that the results from evaluating metrics
   #are not used when training the model.
-  model.compile(optimizer=Adam(learning_rate=0.0001), loss={"x_coordinate" : "mse", "y_coordinate" : "mse"}, metrics={"x_coordinate" : "mse", "y_coordinate" : "mse"})  #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.001), loss={"x_coordinate" : "mse", "y_coordinate" : "mse"}, metrics={"x_coordinate" : "mse", "y_coordinate" : "mse"})  #very important line about model characteristics
 
   model.summary() #prints information about the model that was trained
 
@@ -120,19 +120,9 @@ def AutoCrop():
 
   #Just testing to see if the model is predicting sensible values
   predictions = model.predict(x_test)
-  print(type(predictions))
 
   x_predictions = predictions["x_coordinate"]
   y_predictions = predictions["y_coordinate"]
-
-  print("\n PREDICTIONS")
-  print((y_predictions*y_Std) + y_Mean)
-  print((x_predictions*x_Std) + x_Mean)
-  print("\n PREDICTIONS")
-  print("\n TEST DATA")
-  print((y_coordinate_test*y_Std) + y_Mean)
-  print((x_coordinate_test*x_Std) + x_Mean)
-  print("\n TEST DATA")
 
   #Below are just details printed onto the screen for the user to inform them about the model's accuracy, etc.
   print('Classify Summary: Test X Coordinate MSE: %.2f Time Elapsed: %.2f seconds' % (evaluation[3], (end - start)) )
