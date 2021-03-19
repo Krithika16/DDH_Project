@@ -87,7 +87,7 @@ def AutoCrop():
   #do with the optimization process
   #A metric is a function used to judge the performance of your model. Metric functions are similar to loss functions, except that the results from evaluating metrics
   #are not used when training the model.
-  model.compile(optimizer=Adam(learning_rate=0.001), loss={"x_coordinate" : "mse", "y_coordinate" : "mse"}, metrics={"x_coordinate" : "mse", "y_coordinate" : "mse"})  #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.0001), loss={"x_coordinate" : "mse", "y_coordinate" : "mse"}, metrics={"x_coordinate" : "mse", "y_coordinate" : "mse"})  #very important line about model characteristics
 
   model.summary() #prints information about the model that was trained
 
