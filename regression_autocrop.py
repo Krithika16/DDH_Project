@@ -27,14 +27,11 @@ from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
 #Function to generate and train a neural network to autocrop the scans
 def AutoCrop():
 
-  NAME = "Training_AC_TEST_POMPEII_500img_Trial1{}".format(int(time.time()))
-
-  tensorboard = TensorBoard(log_dir = 'logs/{}'.format(NAME))
   #Training parameters
-  epochs =7 #try 50 later
+  epochs =7
   batch_size = 16
   val_batch_size =8
-  test_batch_size = 8
+  test_batch_size =8
 
   data = DataGeneratorCrop(width = 500, height = 500)
 
@@ -90,7 +87,7 @@ def AutoCrop():
   #do with the optimization process
   #A metric is a function used to judge the performance of your model. Metric functions are similar to loss functions, except that the results from evaluating metrics
   #are not used when training the model.
-  model.compile(optimizer=Adam(learning_rate=0.0007), loss={"x_coordinate" : "mse", "y_coordinate" : "mse"}, metrics={"x_coordinate" : "mse", "y_coordinate" : "mse"})  #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.001), loss={"x_coordinate" : "mse", "y_coordinate" : "mse"}, metrics={"x_coordinate" : "mse", "y_coordinate" : "mse"})  #very important line about model characteristics
 
   model.summary() #prints information about the model that was trained
 
@@ -108,7 +105,7 @@ def AutoCrop():
           steps_per_epoch= int((num_train_examples/batch_size)*2),
           validation_data=val_dataset,
           validation_steps = math.ceil((num_val_examples/val_batch_size)*2),
-          callbacks = [tensorboard, checkpoint])
+          callbacks = checkpoint)
 
 
   #This tests the model that was trained in the previous step - https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/
@@ -135,10 +132,6 @@ def AutoCrop():
 
 
   model.save('results/autocrop/classifier_' + file_time + '.h5')     #save model weights in h5 file
-
-  print(type(history.history))
-  print(history.history)
- 
 
   #converting the metrics (x MSE, x val MSE, y MSE, y val MSE) into numpy arrays
   X_Coordinate_Array = np.array(history.history["x_coordinate_mse"])
