@@ -30,8 +30,8 @@ def AutoCrop():
   #Training parameters
   epochs =7
   batch_size = 16
-  val_batch_size = 8
-  test_batch_size = 8
+  val_batch_size =8
+  test_batch_size =8
 
   data = DataGeneratorCrop(width = 500, height = 500)
 
