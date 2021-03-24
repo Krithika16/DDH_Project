@@ -28,10 +28,10 @@ class Stats:
 class DataGenerator2:       #data generator2 is to use alpha or calpha as the diagnostic parameter
 
     def __init__(self,
-        imagedir = 'C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\deep-learning-hip-dysplasia\hip_images_marta\\', #insert here the directory where you store the hip images
-        anglecsv =  'C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\\Final_data_sample.csv', #insert here the file location of the csv with the patient data
-        width = 128,    #insert here the image width
-        height = 128,   #insert here the image height
+        imagedir = '/home/nealb/Documents/DDH_Project/cropped_hip_images/', #insert here the directory where you store the hip images
+        anglecsv =  '/home/nealb/Documents/DDH_Project/final_data.csv', #insert here the file location of the csv with the patient data
+        width = 350,    #insert here the image width
+        height = 270,   #insert here the image height
         ratio1 = 0.8,   #this is the percentage for training, in this case 80%
         ratio2 = 0.1,   #this is the percentage for validation, 10% and hence the remaining 10% for testing
         #useBinaryClassify = True,   #we will be using a binary classification, 1 or 0
@@ -111,24 +111,15 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
             reader = csv.DictReader(csvfile)
 
             for row in reader:
-                key = row['Match 1']    #Match 1 contains the image name of the nonannotated images
-                #if row['Alpha'] != '' and row['Alpha'] != 'cm' and row['Alpha'] != 'X' and row['Alpha'] != 'No ' and row['Beta'] != 'cm' and row['Alpha'] != 'no':
-                #This line below is just extracting the values that are numbers
-                #if row['C Alpha'] != '' and row['C Alpha'] != 'cm' and row['C Alpha'] != 'X' and row['C Alpha'] != 'No ' and row['C Alpha'] != 'no' \
-                #and row['C Beta'] != 'No' and row['C Beta'] != ' ' and row['C Beta'] != 'X' \
-                xCoordinate = row['X-pos for BB']
-                yCoordinate = row['Y-pos for BB']
-                coordinates_dict[key] = [xCoordinate, yCoordinate]
+                key = row['Match 2']    #Match 1 contains the image name of the nonannotated images
                 if row['Indication'] != ' '\
                 and row['Outcome'] != ' ' \
                 and row['Birthweight in kg'] != '0' and row['Birthweight in kg'] != 'Unreccorded' and row['Birthweight in kg'] != 'Unknown' and row['Birthweight in kg'] != 'Unknown ':
-                    #alpha = float(row['C Alpha'])
-                    #beta = float(row['C Beta'])       #the beta value was initially also saved though not used
                     side = row['Side']
                     gender = row['Patient Sex']
                     indication = row['Indication']
-                    birthweight = float(row['Birthweight in kg']) #This is the cleaned version of the birthweight data in kg
-                    outcome = float(row['Binary Outcome'])
+                    birthweight = row['Birthweight in kg'] #This is the cleaned version of the birthweight data in kg
+                    outcome = row['Binary Outcome']
 
                     patient_details[key] = [side, gender, indication, birthweight]
                     outcome_dict[key] = [outcome]
@@ -157,7 +148,7 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
         outcome_data = []
         patient_data = []
         for f in files:
-            if f in self.outcome_dict:        #this is to ensure all file names in Match 1 are also present in the image directory chosen
+            if f in self.outcome_dict:        #this is to ensure all file names in Match 2 are also present in the image directory chosen
                 outcome_data.append(self.outcome_dict[f])       #if this is the case the outcome data will be saved for that file
                 files_with_angle.append(f)      ##and the file name will also be stored
                 patient_data.append(self.patient_dict[f]) #And the relevant patient details will also be stored
@@ -177,6 +168,7 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
 
         for f in tqdm(files):
             img = io.imread(self.imagedir + f)
+            io.imshow(img)
             if(self.useCropping):
                 img = cropimages(img)
             img = transform.resize(img, (self.HEIGHT, self.WIDTH, COLOR_CHANNELS), mode='constant')
@@ -248,13 +240,8 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
         # Load image data
         self.image_data = self.loadImageData()
 
-#        print("Hi")
-#        print(np.shape(self.patient_data))
-
         # Extract the necessary data from the dictionaries and reshape into column vectors
         self.outcome_data = np.reshape(self.outcome_data[:,0], (-1, 1)) #The (-1, 1) turns the matrix into a column vector
-        #self.alphaAngle_data = np.reshape(self.patient_data[:,0], (-1, 1)) #This grabs the alpha angle for all the keys and turns it into a column vector
-        #self.betaAngle_data = np.reshape(self.patient_data[:,1], (-1, 1)) #This grabs the beta angle for all the keys and turns it into a column vector
         self.side_data = np.reshape(self.patient_data[:,0], (-1, 1))
         self.gender_data = np.reshape(self.patient_data[:,1], (-1, 1))
         self.indication_data = np.reshape(self.patient_data[:,2], (-1, 1))
@@ -265,8 +252,6 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
             indices = [_ for _ in range(len(self.outcome_data))]
             self.image_data = self.image_data[indices]
             self.outcome_data = self.outcome_data[indices]
-            #self.alphaAngle_data = self.alphaAngle_data[indices]
-            #self.betaAngle_data = self.betaAngle_data[indices]
             self.side_data = self.side_data[indices]
             self.gender_data = self.gender_data[indices]
             self.indication_data = self.indication_data[indices]
@@ -286,16 +271,9 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
             self.image_data, self.img_mean, self.img_std = self.whiten(self.image_data)
 
         #THE BELOW CODE IS TO DO WITH THE ALPHA ANGLE AND TURNING IT BINARY--> SEEING AS I AM NOT KEEPING ALPHA AS OUTPUT, DON'T NEED TO TURN IT BINARY
-        #if self.useBinaryClassify:
-        #    self.angle_data = self.threshold(self.angle_data)   #refer to the threshold function to extract the angle data as 1 or 0s
-        #else:
         if self.useNormalization:
-            #self.alphaAngle_data, self.alphaAngle_min, self.alphaAngle_max = self.normalize(self.alphaAngle_data)
-            #self.betaAngle_data, self.betaAngle_min, self.betaAngle_max = self.normalize(self.betaAngle_data)
             self.birthweight_data, self.birthweight_min, self.birthweight_max = self.normalize(self.birthweight_data)
         if self.useWhitening:
-            #self.alphaAngle_data, self.alphaAngle_mean, self.alphaAngle_std = self.whiten(self.alphaAngle_data)
-            #self.betaAngle_data, self.betaAngle_mean, self.betaAngle_std = self.whiten(self.betaAngle_data)
             self.birthweight_data, self.birthweight_mean, self.birthweight_std = self.whiten(self.birthweight_data)
 
         def one_hot(array):
@@ -345,24 +323,6 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
         self.birthweight_val = self.birthweight_data[index1:index2]
         self.birthweight_test = self.birthweight_data[index2:]
 
-        """
-        #ALPHA
-        self.alphaAngle_train = self.alphaAngle_data[0:index1]
-        self.alphaAngle_val = self.alphaAngle_data[index1:index2]
-        self.alphaAngle_test = self.alphaAngle_data[index2:]
-
-        #BETA
-        self.betaAngle_train = self.betaAngle_data[0:index1]
-        self.betaAngle_val = self.betaAngle_data[index1:index2]
-        self.betaAngle_test = self.betaAngle_data[index2:]
-        """
-        #Don't think we need this
-        #if self.useBinaryClassify:      #Split the y labels now, the value of the angle
-        #    self.y_train = self.outcome_data[0:index1]
-        #    self.y_val = self.outcome_data[index1:index2]
-        #    self.y_test = self.outcome_data[index2:]
-
-        #else:
         self.y_train = self.outcome_data[0:index1]
         self.y_val = self.outcome_data[index1:index2]
         self.y_test = self.outcome_data[index2:]
