@@ -180,6 +180,93 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   print('Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[6], (end - start)) )   #note sensitivity=recall
   print('Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds' % (evaluation[7], (end - start)) )   #note sensitivity=recall
 
+  model.save('results/tf2/classifier_' + file_time + '.h5')     #save model weights in h5 file
+
+  plt.close()
+
+  #Creating subplots so that we only have 1 big figure instead of 8 figures
+  fig = plt.figure(1)
+
+  ax1 = fig.add_subplot(2, 2, 1)
+  ax1.plot(history.history["binary_accuracy"])
+  ax1.plot(history.history["val_binary_accuracy"])
+  ax1.set_ylabel("Accuracy")
+  ax1.set_xlabel("Epochs")
+  ax1.title.set_text('Test Accuracy: %.2f' % (evaluation[1]))
+  ax1.legend(["Train", "Val"], loc="upper left")
+
+  ax2 = fig.add_subplot(2, 2, 2)
+  ax2.plot(history.history["loss"])
+  ax2.plot(history.history["val_loss"])
+  ax2.set_ylabel("Loss")
+  ax2.set_xlabel("Epochs")
+  ax2.title.set_text("Test Loss: %.2f" % (evaluation[0]))
+  ax2.legend(["Train", "Val"], loc="upper left")
+
+  ax3 = fig.add_subplot(2, 2, 3)
+  ax3.plot(history.history["recall"])
+  ax3.plot(history.history["val_recall"])
+  ax3.set_ylabel("Sensitivity")
+  ax3.set_xlabel("Epochs")
+  ax3.title.set_text("Test Sensitivity: %.2f" % (evaluation[2]))
+  ax3.legend(["Train", "Val"], loc="upper left")
+
+  ax4 = fig.add_subplot(2, 2, 4)
+  ax4.plot(history.history["specificity"])
+  ax4.plot(history.history["val_specificity"])
+  ax4.set_ylabel("Specificity")
+  ax4.set_xlabel("Epochs")
+  ax4.title.set_text("Test Specificity: %.2f" % (evaluation[3]))
+  ax4.legend(["Train", "Val"], loc="upper left")
+
+  fig.suptitle("Classification Time Elapsed: %.2f seconds" % ((end - start)))
+  plt.subplots_adjust(top=0.85)
+  plt.subplots_adjust(wspace=0.5, hspace=0.5)
+  fig.savefig('results/tf2/classifier1_' + file_time + '.png')
+
+  plt.close()
+
+  fig1 = plt.figure(2)
+  fig1.tight_layout(h_pad = 2)
+
+  ax5 = fig1.add_subplot(2, 2, 1)
+  ax5.plot(history.history["auc"])
+  ax5.plot(history.history["val_auc"])
+  ax5.set_ylabel("AUC")
+  ax5.set_xlabel("Epochs")
+  ax5.title.set_text("Test AUC: %.2f" % (evaluation[4]))
+  ax5.legend(["Train", "Val"], loc="upper left")
+
+  ax6 = fig1.add_subplot(2, 2, 2)
+  ax6.plot(history.history["negative_predictive_value"])
+  ax6.plot(history.history["val_negative_predictive_value"])
+  ax6.set_ylabel("NPV")
+  ax6.set_xlabel("Epochs")
+  ax6.title.set_text("Test NPV: %.2f" % (evaluation[5]))
+  ax6.legend(["Train", "Val"], loc="upper left")
+
+  ax7 = fig1.add_subplot(2, 2, 3)
+  ax7.plot(history.history["positive_predictive_value"])
+  ax7.plot(history.history["val_positive_predictive_value"])
+  ax7.set_ylabel("PPV")
+  ax7.set_xlabel("Epochs")
+  ax7.title.set_text("Test PPV: %.2f" % (evaluation[6]))
+  ax7.legend(["Train", "Val"], loc="upper left")
+
+  ax8 = fig1.add_subplot(2, 2, 4)
+  ax8.plot(history.history["matthews_correlation_coefficient"])
+  ax8.plot(history.history["val_matthews_correlation_coefficient"])
+  ax8.set_ylabel("MCC")
+  ax8.set_xlabel("Epochs")
+  ax8.title.set_text("Test MCC: %.2f" % (evaluation[7]))
+  ax8.legend(["Train", "Val"], loc="upper left")
+
+  fig1.suptitle("Classification Time Elapsed: %.2f seconds" % ((end - start)))
+  plt.subplots_adjust(top=0.85)
+  plt.subplots_adjust(wspace=0.5, hspace=0.5)
+  fig1.savefig('results/tf2/classifier2_' + file_time + '.png')
+
+
   plt.close()
   # Plot Accuracy
   plt.plot(history.history["binary_accuracy"])
@@ -189,7 +276,6 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   plt.title('Classify Summary: Test Accuracy: %.2f Time Elapsed: %.2f seconds' % (evaluation[1], (end - start)))
   plt.legend(["Train Accuracy", "Validation Accuracy"], loc="upper left")
   plt.savefig('results/tf2/classifier_' + file_time + '.png')   #save graph
-  model.save('results/tf2/classifier_' + file_time + '.h5')     #save model weights in h5 file
   plt.close()
 
   print(model.metrics_names)
@@ -259,7 +345,7 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   plt.plot(history.history["val_matthews_correlation_coefficient"])
   plt.ylabel("Matthews Correlation Coefficient")
   plt.xlabel("Epochs")
-  plt.title("Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds" % (evaluation[7], (end - start)))
+  plt.title("Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[7], (end - start)))
   plt.legend(["Train MCC", "Validation MCC"], loc="upper left")
   plt.savefig('results/tf2/mcc_' + file_time + '.png')  #save MCC graph
   plt.close()
