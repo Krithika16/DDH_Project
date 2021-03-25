@@ -16,12 +16,12 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import LearningRateScheduler, ReduceLROnPlateau, ModelCheckpoint
 from tensorflow.keras.metrics import MeanSquaredError
 import matplotlib.pyplot as plt
-from ..data_loader2 import DataGenerator2    #for this classifier we import only DataGenerator2 since we are using the alpha angle
-from .model import conv0, conv1, conv2, conv3, resnet, resnet2, patientDetModel, resnet2Autocrop
+from data_loader2 import DataGenerator2    #for this classifier we import only DataGenerator2 since we are using the alpha angle
+from model import conv0, conv1, conv2, conv3, resnet, resnet2, patientDetModel, resnet2Autocrop
 import math
 from tensorflow.keras.models import load_model, Model
 import h5py
-from ..data_loader2_autocrop import DataGeneratorCrop
+from data_loader2_autocrop import DataGeneratorCrop
 import tensorflow.keras.backend as K
 
 #Function to diagnose DDH from the scans and patient details

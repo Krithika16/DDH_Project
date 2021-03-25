@@ -28,8 +28,8 @@ class Stats:
 class DataGenerator2:       #data generator2 is to use alpha or calpha as the diagnostic parameter
 
     def __init__(self,
-        imagedir = 'C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\cropped_hip_images\\', #insert here the directory where you store the hip images
-        anglecsv =  'C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\\Final_data_sample.csv', #insert here the file location of the csv with the patient data
+        imagedir = '/home/nealb/Documents/DDH_Project/cropped_hip_images/', #insert here the directory where you store the hip images
+        anglecsv =  '/home/nealb/Documents/DDH_Project/final_data.csv', #insert here the file location of the csv with the patient data
         width = 350,    #insert here the image width
         height = 270,   #insert here the image height
         ratio1 = 0.8,   #this is the percentage for training, in this case 80%
