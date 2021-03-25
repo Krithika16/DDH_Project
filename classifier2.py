@@ -153,7 +153,7 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   import datetime
   file_time = datetime.datetime.today().strftime('_%Y-%m-%d__%I-%M')  #get date and time for today for filename
   #This is a way to save the model weights after every epoch in case training is interrupted
-  checkpoint = ModelCheckpoint("results/autocrop/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
+  checkpoint = ModelCheckpoint("results/tf2/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
     save_best_only=True, save_weights_only = True, mode='max', save_freq='epoch')
   #FIT TRAINS THE MODEL FOR A FIXED NUMBER OF EPOCHS (ITERATIONS ON A DATASET)
   history = model.fit(train_dataset,
