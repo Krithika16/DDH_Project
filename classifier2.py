@@ -13,7 +13,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras import regularizers
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import LearningRateScheduler, ReduceLROnPlateau
+from tensorflow.keras.callbacks import LearningRateScheduler, ReduceLROnPlateau, ModelCheckpoint
 from tensorflow.keras.metrics import MeanSquaredError
 import matplotlib.pyplot as plt
 from ..data_loader2 import DataGenerator2    #for this classifier we import only DataGenerator2 since we are using the alpha angle
@@ -22,18 +22,19 @@ import math
 from tensorflow.keras.models import load_model, Model
 import h5py
 from ..data_loader2_autocrop import DataGeneratorCrop
+import tensorflow.keras.backend as K
 
 #Function to diagnose DDH from the scans and patient details
 def Classify2():    #again specifiy the function to be 2 and hence refere to the alpha angle
 
   # Training Parameters
-  epochs = 1 #going through the dataset 50 times
+  epochs = 3 #going through the dataset 50 times
   batch_size = 16 #Number of samples passed through CNN at one time for training data
   test_batch_size = 8 #batch size for testing data
   val_batch_size = 8 #batch size for validation data
 
   # Import Dataset, in this case the y label is the alpha angle and x is the scan
-  data = DataGenerator2(width=256, height=256)  #in this case we have specified the width and height to be 256, larger than the standard in the dataloader file
+  data = DataGenerator2(width=350, height=270)  #in this case we have specified the width and height to be 256, larger than the standard in the dataloader file
   #Below, splits up the data so that it is within one of three categories: training, validation and testing datasets
 
 
@@ -43,8 +44,6 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   side_train = data.side_train
   indication_train = data.indication_train
   birthweight_train = data.birthweight_train
-  #alpha_train = data.alphaAngle_train
-  #beta_train = data.betaAngle_train
   y_train = data.y_train
 
   num_train_examples = np.shape(y_train)
@@ -55,8 +54,6 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   side_val = data.side_val
   indication_val = data.indication_val
   birthweight_val = data.birthweight_val
-  #alpha_val = data.alphaAngle_val
-  #beta_val = data.betaAngle_val
   y_val = data.y_val
 
   num_val_examples = np.shape(y_val)
@@ -67,8 +64,6 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   side_test = data.side_test
   indication_test = data.indication_test
   birthweight_test = data.birthweight_test
-  #alpha_test = data.alphaAngle_test
-  #beta_test = data.betaAngle_test
   y_test = data.y_test
 
   num_test_examples = np.shape(y_test)
@@ -78,6 +73,7 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   print("Validation DataSet: " + str(x_val.shape) + " " + str(y_val.shape))
   print("Test DataSet: " + str(x_test.shape) + " " + str(y_test.shape))
 
+  """
   #Load Marta's model
   MartaModel = load_model('C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\deep-learning-hip-dysplasia\\results\\tf2\\classifier__2020-06-04__08-55.h5')
 
@@ -88,19 +84,20 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   outcomePred_Train = modelCut.predict(x_train)
   outcomePred_Val = modelCut.predict(x_val)
   outcomePred_Test = modelCut.predict(x_test)
+  """
 
   #shuffling the dataset batches to help training converge faster, reduce bias, and preventing model from learning the order of the training
 
-  train_dataset = tf.data.Dataset.from_tensor_slices(({"outcome_pred" : outcomePred_Train, "gender" :gender_train, \
+  train_dataset = tf.data.Dataset.from_tensor_slices(({"scan" : x_train, "gender" :gender_train, \
    "side" : side_train, "indication" : indication_train, "birthweight" : birthweight_train}, y_train)).batch(batch_size).shuffle(1000)
   train_dataset = train_dataset.repeat()
 
-  val_dataset = tf.data.Dataset.from_tensor_slices(({"outcome_pred" : outcomePred_Val, "gender" :gender_val, \
+  val_dataset = tf.data.Dataset.from_tensor_slices(({"scan" : x_val, "gender" :gender_val, \
    "side" : side_val, "indication" : indication_val, "birthweight" : birthweight_val}, y_val)).batch(val_batch_size).shuffle(1000)
   val_dataset = val_dataset.repeat()
 
 
-  test_dataset = tf.data.Dataset.from_tensor_slices(({"outcome_pred" : outcomePred_Test, "gender" :gender_test, \
+  test_dataset = tf.data.Dataset.from_tensor_slices(({"scan" : x_test, "gender" :gender_test, \
    "side" : side_test, "indication" : indication_test, "birthweight" : birthweight_test}, y_test)).batch(test_batch_size).shuffle(1000)
   test_dataset = test_dataset.repeat()
 
@@ -128,10 +125,10 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
       """
 
   # Network Parameters
-  #WIDTH = data.WIDTH
-  #HEIGHT = data.HEIGHT
-  #CHANNELS = 1
-  NUM_FEATURES = 1000 #This is the number of nodes in the last layer of Marta's network
+  WIDTH = data.WIDTH
+  HEIGHT = data.HEIGHT
+  CHANNELS = 1
+#  NUM_FEATURES = 1000 #This is the number of nodes in the last layer of Marta's network
   NUM_OUTPUTS = 1
   NUM_SIDE = data.SIDE
   NUM_GENDER = data.GENDER
@@ -139,11 +136,12 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
 
 
   #This section of code below chooses the model and compiles it with the necessary hyperparameters
-  model = patientDetModel(NUM_FEATURES, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION);  #model chosen is patientDetModel
+  model = resnet2(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION);  #model chosen is patientDetModel
+
 
   #Note: compile configures the model for training BUT DOESN'T TRAIN IT
   #Note: recall is sensitivity while precision is positive predictive value
-  model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall()])  #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary() #prints information about the model that was trained
 
   # Prepare callbacks
@@ -152,13 +150,18 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   #callbacks = [lr_reducer, lr_scheduler]
 
   start = time.time();
-
+  import datetime
+  file_time = datetime.datetime.today().strftime('_%Y-%m-%d__%I-%M')  #get date and time for today for filename
+  #This is a way to save the model weights after every epoch in case training is interrupted
+  checkpoint = ModelCheckpoint("results/autocrop/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
+    save_best_only=True, save_weights_only = True, mode='max', save_freq='epoch')
   #FIT TRAINS THE MODEL FOR A FIXED NUMBER OF EPOCHS (ITERATIONS ON A DATASET)
   history = model.fit(train_dataset,
           epochs=epochs,
           steps_per_epoch= int((num_train_examples/batch_size)*2),
           validation_data=val_dataset,
-          validation_steps = math.ceil((num_val_examples/val_batch_size)*2))
+          validation_steps = math.ceil((num_val_examples/val_batch_size)*2),
+          callbacks = [checkpoint])
 
 
   #This tests the model that was trained in the previous step - https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/
@@ -167,12 +170,17 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   evaluation = model.evaluate(test_dataset, verbose=1, steps = math.ceil((num_test_examples/test_batch_size)*2))    #after training and validation end (50 epochs), we finish with testing
   end = time.time()
 
-
   #Below are just details printed onto the screen for the user to inform them about the model's accuracy, etc.
   print('Classify Summary: Test Accuracy: %.2f Time Elapsed: %.2f seconds' % (evaluation[1], (end - start)) )
   print('Classify Summary: Test Loss: %.2f Time Elapsed: %.2f seconds' % (evaluation[0], (end - start)) )
-  print('Classify Summary: Sensitivity: %.2f Time Elapsed: %.2f seconds' % (evaluation[2], (end - start)) )   #note sensitivity=recall
+  print('Classify Summary: Test Sensitivity: %.2f Time Elapsed: %.2f seconds' % (evaluation[2], (end - start)) )   #note sensitivity=recall
+  print('Classify Summary: Test Specificity: %.2f Time Elapsed: %.2f seconds' % (evaluation[3], (end - start)) )
+  print('Classify Summary: Test AUC: %.2f Time Elapsed: %.2f seconds' % (evaluation[4], (end - start)) )
+  print('Classify Summary: Test NPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[5], (end - start)) )   #note sensitivity=recall
+  print('Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[6], (end - start)) )   #note sensitivity=recall
+  print('Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds' % (evaluation[7], (end - start)) )   #note sensitivity=recall
 
+  plt.close()
   # Plot Accuracy
   plt.plot(history.history["binary_accuracy"])
   plt.plot(history.history["val_binary_accuracy"])
@@ -180,9 +188,6 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   plt.xlabel("Epochs")
   plt.title('Classify Summary: Test Accuracy: %.2f Time Elapsed: %.2f seconds' % (evaluation[1], (end - start)))
   plt.legend(["Train Accuracy", "Validation Accuracy"], loc="upper left")
-
-  import datetime
-  file_time = datetime.datetime.today().strftime('_%Y-%m-%d__%I-%M')  #get date and time for today for filename
   plt.savefig('results/tf2/classifier_' + file_time + '.png')   #save graph
   model.save('results/tf2/classifier_' + file_time + '.h5')     #save model weights in h5 file
   plt.close()
@@ -207,3 +212,81 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   plt.title("Classify Summary: Test Sensitivity: %.2f Time Elapsed: %.2f seconds" % (evaluation[2], (end - start)))
   plt.legend(["Train Sensitivity", "Validation Sensitivity"], loc="upper left")
   plt.savefig('results/tf2/sensitivity_' + file_time + '.png')  #save sensitivity graph
+  plt.close()
+
+  # Plot Specificity
+  plt.plot(history.history["specificity"])
+  plt.plot(history.history["val_specificity"])
+  plt.ylabel("Specificity")
+  plt.xlabel("Epochs")
+  plt.title("Classify Summary: Test Specificity: %.2f Time Elapsed: %.2f seconds" % (evaluation[3], (end - start)))
+  plt.legend(["Train Specificity", "Validation Specificity"], loc="upper left")
+  plt.savefig('results/tf2/specificity_' + file_time + '.png')  #save specificity graph
+  plt.close()
+
+  # Plot AUC
+  plt.plot(history.history["auc"])
+  plt.plot(history.history["val_auc"])
+  plt.ylabel("AUC")
+  plt.xlabel("Epochs")
+  plt.title("Classify Summary: Test AUC: %.2f Time Elapsed: %.2f seconds" % (evaluation[4], (end - start)))
+  plt.legend(["Train AUC", "Validation AUC"], loc="upper left")
+  plt.savefig('results/tf2/auc_' + file_time + '.png')  #save AUC graph
+  plt.close()
+
+  # Plot NPV
+  plt.plot(history.history["negative_predictive_value"])
+  plt.plot(history.history["val_negative_predictive_value"])
+  plt.ylabel("Negative Predictive Value")
+  plt.xlabel("Epochs")
+  plt.title("Classify Summary: Test NPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[5], (end - start)))
+  plt.legend(["Train NPV", "Validation NPV"], loc="upper left")
+  plt.savefig('results/tf2/npv_' + file_time + '.png')  #save NPV graph
+  plt.close()
+
+  # Plot PPV
+  plt.plot(history.history["positive_predictive_value"])
+  plt.plot(history.history["val_positive_predictive_value"])
+  plt.ylabel("Positive Predictive Value")
+  plt.xlabel("Epochs")
+  plt.title("Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[6], (end - start)))
+  plt.legend(["Train PPV", "Validation PPV"], loc="upper left")
+  plt.savefig('results/tf2/ppv_' + file_time + '.png')  #save PPV graph
+  plt.close()
+
+  # Plot MCC
+  plt.plot(history.history["matthews_correlation_coefficient"])
+  plt.plot(history.history["val_matthews_correlation_coefficient"])
+  plt.ylabel("Matthews Correlation Coefficient")
+  plt.xlabel("Epochs")
+  plt.title("Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[7], (end - start)))
+  plt.legend(["Train MCC", "Validation MCC"], loc="upper left")
+  plt.savefig('results/tf2/mcc_' + file_time + '.png')  #save MCC graph
+  plt.close()
+
+
+#Definitions of additional custom metrics that are used to evaluate the model - https://medium.com/analytics-vidhya/custom-metrics-for-keras-tensorflow-ae7036654e05
+def specificity(y_true, y_pred):
+    tn = K.sum(K.round(K.clip((1 - y_true) * (1 - y_pred), 0, 1)))
+    fp = K.sum(K.round(K.clip((1 - y_true) * y_pred, 0, 1)))
+    return tn / (tn + fp + K.epsilon())
+
+def negative_predictive_value(y_true, y_pred):
+    tn = K.sum(K.round(K.clip((1 - y_true) * (1 - y_pred), 0, 1)))
+    fn = K.sum(K.round(K.clip(y_true * (1 - y_pred), 0, 1)))
+    return tn / (tn + fn + K.epsilon())
+
+def positive_predictive_value(y_true, y_pred):
+    tp = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    fp = K.sum(K.round(K.clip((1 - y_true) * y_pred, 0, 1)))
+    return tp / (tp + fp + K.epsilon())
+
+def matthews_correlation_coefficient(y_true, y_pred):
+    tp = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    tn = K.sum(K.round(K.clip((1 - y_true) * (1 - y_pred), 0, 1)))
+    fp = K.sum(K.round(K.clip((1 - y_true) * y_pred, 0, 1)))
+    fn = K.sum(K.round(K.clip(y_true * (1 - y_pred), 0, 1)))
+
+    num = tp * tn - fp * fn
+    den = (tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)
+    return num / K.sqrt(den + K.epsilon())
