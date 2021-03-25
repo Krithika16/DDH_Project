@@ -28,7 +28,7 @@ import tensorflow.keras.backend as K
 def Classify2():    #again specifiy the function to be 2 and hence refere to the alpha angle
 
   # Training Parameters
-  epochs = 3 #going through the dataset 50 times
+  epochs = 80 #going through the dataset 50 times
   batch_size = 16 #Number of samples passed through CNN at one time for training data
   test_batch_size = 8 #batch size for testing data
   val_batch_size = 8 #batch size for validation data
