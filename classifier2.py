@@ -28,7 +28,7 @@ import tensorflow.keras.backend as K
 def Classify2():    #again specifiy the function to be 2 and hence refere to the alpha angle
 
   # Training Parameters
-  epochs = 80 #going through the dataset 50 times
+  epochs = 40 #going through the dataset 50 times
   batch_size = 16 #Number of samples passed through CNN at one time for training data
   test_batch_size = 8 #batch size for testing data
   val_batch_size = 8 #batch size for validation data
@@ -259,7 +259,7 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
   plt.plot(history.history["val_matthews_correlation_coefficient"])
   plt.ylabel("Matthews Correlation Coefficient")
   plt.xlabel("Epochs")
-  plt.title("Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[7], (end - start)))
+  plt.title("Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds" % (evaluation[7], (end - start)))
   plt.legend(["Train MCC", "Validation MCC"], loc="upper left")
   plt.savefig('results/tf2/mcc_' + file_time + '.png')  #save MCC graph
   plt.close()
