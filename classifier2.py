@@ -29,9 +29,9 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
 
   # Training Parameters
   epochs = 40 #going through the dataset 50 times
-  batch_size = 16 #Number of samples passed through CNN at one time for training data
-  test_batch_size = 8 #batch size for testing data
-  val_batch_size = 8 #batch size for validation data
+  batch_size = 64 #Number of samples passed through CNN at one time for training data
+  test_batch_size = 32 #batch size for testing data
+  val_batch_size = 32 #batch size for validation data
 
   # Import Dataset, in this case the y label is the alpha angle and x is the scan
   data = DataGenerator2(width=350, height=270)  #in this case we have specified the width and height to be 256, larger than the standard in the dataloader file
@@ -141,7 +141,7 @@ def Classify2():    #again specifiy the function to be 2 and hence refere to the
 
   #Note: compile configures the model for training BUT DOESN'T TRAIN IT
   #Note: recall is sensitivity while precision is positive predictive value
-  model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.054), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary() #prints information about the model that was trained
 
   # Prepare callbacks
