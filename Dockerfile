@@ -14,7 +14,7 @@ RUN pip install flake8
 RUN pip install numpy
 RUN pip install h5py
 RUN pip install datetime
-RUN pip install skimage
+RUN pip install scikit-image
 
 RUN apt-get update
 RUN apt-get install -y tmux
