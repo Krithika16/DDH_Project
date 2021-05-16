@@ -13,7 +13,7 @@ RUN pip install matplotlib
 RUN pip install flake8
 RUN pip install numpy
 RUN pip install h5py
-RUN pip install os
+RUN pip install datetime
 
 RUN apt-get update
 RUN apt-get install -y tmux
