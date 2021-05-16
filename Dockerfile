@@ -12,7 +12,7 @@ RUN pip install pytest
 RUN pip install matplotlib
 RUN pip install flake8
 RUN pip install numpy
-
+RUN pip install h5py
 
 RUN apt-get update
 RUN apt-get install -y tmux
