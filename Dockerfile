@@ -16,7 +16,6 @@ RUN pip install h5py
 RUN pip install datetime
 RUN pip install scikit-image
 RUN pip install tqdm
-RUN pip install csv
 
 RUN apt-get update
 RUN apt-get install -y tmux
