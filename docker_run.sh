@@ -1,1 +1,1 @@
-docker run -it --gpus=all -u $(id -u):$(id -g) --ipc=host --name dock_container1 -v /home/krithika/DDH_Project/DDH_Project/:/home/krithika/DDH_Project/DDH_Project/ dock_image1
+docker run -it --gpus=all -u $(id -u):$(id -g) --ipc=host --name dock_container2 -v /home/krithika/DDH_Project/DDH_Project/:/home/krithika/DDH_Project/DDH_Project/ dock_image2
