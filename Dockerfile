@@ -12,14 +12,7 @@ RUN pip install pytest
 RUN pip install matplotlib
 RUN pip install flake8
 RUN pip install numpy
-RUN pip install math
-RUN pip install h5py
-RUN pip install csv
-RUN pip install os
-RUN pip install datetime
-RUN pip install skimage
-RUN pip install tqdm
-RUN pip install sys
+
 
 RUN apt-get update
 RUN apt-get install -y tmux
