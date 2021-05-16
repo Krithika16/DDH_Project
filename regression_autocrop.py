@@ -116,7 +116,7 @@ def AutoCrop():
 
   #Just testing to see if the model is predicting sensible values
   predictions = model.predict(x_test)
-   
+
   x_predictions = predictions["x_coordinate"]
   y_predictions = predictions["y_coordinate"]
 
