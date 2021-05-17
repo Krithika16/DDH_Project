@@ -22,9 +22,9 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
 
   # Training Parameters
   epochs = 40
-  batch_size = 16
-  test_batch_size = 8
-  val_batch_size = 8
+  batch_size = 32
+  test_batch_size = 16
+  val_batch_size = 16
 
   #Note: to train Marta's network with cropped scans, use width = 350 and height = 270
   data = DataGenerator2(width=350, height=270)  #in this case we have specified the width and height to be 256, larger than the standard in the dataloader file
@@ -81,7 +81,7 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
   NUM_OUTPUTS = 1
 
   model = resnet2(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS);  #model chosen is resnet2
-  model.compile(optimizer=Adam(learning_rate=0.0034), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary()
 
 
