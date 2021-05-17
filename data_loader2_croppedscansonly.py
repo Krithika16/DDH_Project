@@ -25,7 +25,7 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
 
     def __init__(self,
         #Note: to get cropped scans, change the directory below and the width and height when calling this to 350x270
-        imagedir = 'C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\cropped_hip_images\\', #insert here the directory where you store the hip images
+        imagedir = '/home/krithika/DDH_Project/DDH_Project/cropped_hip_images/', #insert here the directory where you store the hip images
         anglecsv =  'Final_data_sample.csv', #insert here the file location of the csv with the patient data
         width = 350,    #insert here the image width
         height = 270,   #insert here the image height
