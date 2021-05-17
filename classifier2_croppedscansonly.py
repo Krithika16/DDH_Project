@@ -81,7 +81,7 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
   NUM_OUTPUTS = 1
 
   model = resnet2(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS);  #model chosen is resnet2
-  model.compile(optimizer=Adam(learning_rate=0.01), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.0034), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary()
 
 
@@ -111,6 +111,8 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
   print('Classify Summary: Test NPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[5], (end - start)) )   #note sensitivity=recall
   print('Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[6], (end - start)) )   #note sensitivity=recall
   print('Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds' % (evaluation[7], (end - start)) )   #note sensitivity=recall
+
+  model.save('results/classifier_croppedscans/classifier_' + file_time + '.h5')     #save model weights in h5 file
 
   plt.close()
 
