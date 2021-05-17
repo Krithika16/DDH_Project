@@ -22,9 +22,9 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
 
   # Training Parameters
   epochs = 40
-  batch_size = 64
-  test_batch_size = 32
-  val_batch_size = 32
+  batch_size = 32
+  test_batch_size = 16
+  val_batch_size = 16
 
   #Note: to train Marta's network with cropped scans, use width = 350 and height = 270
   data = DataGenerator2(width=350, height=270)  #in this case we have specified the width and height to be 256, larger than the standard in the dataloader file
