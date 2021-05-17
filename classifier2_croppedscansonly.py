@@ -21,7 +21,7 @@ import tensorflow.keras.backend as K
 def Classify2_croppedScans():    #again specifiy the function to be 2 and hence refere to the alpha angle
 
   # Training Parameters
-  epochs = 50
+  epochs = 30
   batch_size = 16
   test_batch_size = 8
   val_batch_size = 8
@@ -47,7 +47,7 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
   print("Training DataSet: " + str(x_train.shape) + " " + str(y_train.shape))
   print("Validation DataSet: " + str(x_val.shape) + " " + str(y_val.shape))
   print("Test DataSet: " + str(x_test.shape) + " " + str(y_test.shape))
- 
+
   train_dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train)).batch(batch_size).shuffle(1000)
   train_dataset = train_dataset.repeat()
 
@@ -60,8 +60,8 @@ def Classify2_croppedScans():    #again specifiy the function to be 2 and hence 
   def lr_schedule(epoch):   #this is currently not being used
       """Learning Rate Schedule. Learning rate is scheduled to be reduced
       after 80, 120, 160, 180 epochs. Called automatically every epoch as
-      part of callbacks during training. """ 
-      
+      part of callbacks during training. """
+
       lr = 1e-2
       if epoch < 10:
           lr *= 1e-2
