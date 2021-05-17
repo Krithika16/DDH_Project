@@ -1,32 +1,82 @@
-﻿File Name,Match 1,Study Date,Age (weeks),Patient Sex,Modality,Manufacturer,Side,Birthweight,C Alpha,C Beta,Alpha,Beta,Indication,Time,Outcome,Side affected,Review Physio,Comment,Binary Outcome,Birthweight in kg,X-pos for BB,Y-pos for BB,Width for BB,Height for BB,Center point X Coordinate,Center point Y Coordinate
-0ann.png,0nonann.png,12/3/2018,18,M,US,GE Healthcare,Right,Unreccorded,59.6,77.3,60,74,Arthrogryposis/Foot deformity,Baseline,US 1-2 Weeks,Left,,,1,Unreccorded,125,128,350,270,300,263
-1ann.png,1nonann.png,22/02/2018,4,M,US,GE Healthcare,Left,7lbs 15ozs,40,86.4,44,83,Dislocated hip/Left leg shorter/calcaneovalgus Rt > Lt,Baseline,US 2-3 Weeks,Left,,,1,3.600389437,110,146,350,270,285,281
-2ann.png,2nonann.png,12/3/2018,86,F,US,GE Healthcare,Left,7lbs 3ozs,55.2,78,53,87,Family History of DDH,Baseline,US 4-6 Weeks,Left,,,1,3.260195159,62,227,350,270,237,362
-3ann.png,3nonann.png,16/03/2018,37,M,US,GE Healthcare,Right,7lbs 7ozs,67,71,65,71,Family History of DDH,Baseline,Discharged,Normal,,,0,3.373593252,86,163,350,270,261,298
-4ann.png,4nonann.png,16/03/2018,37,M,US,GE Healthcare,Left,7lbs 7ozs,70,68.2,68,69,Family History of DDH,Baseline,Discharged,Normal,,,0,3.373593252,121,181,350,270,296,316
-5ann.png,5nonann.png,12/3/2018,34,M,US,GE Healthcare,Left,8lbs 11ozs,61.7,74.6,60,77,Breech Presentation,Baseline,Discharged,Normal,,,0,3.940583714,79,212,350,270,254,347
-6ann.png,6nonann.png,16/03/2018,64,M,US,GE Healthcare,Left,3.132kg,63.9,68.7,63,68,Clinical abnormality,Baseline,Discharged,Normal,,,0,3.132,63,179,350,270,238,314
-7ann.png,7nonann.png,12/3/2018,35,M,US,GE Healthcare,Left,6lbs 8ozs,62.3,69.7,58,69,Breech Presentation,Baseline,Discharged,Normal,,,0,2.948350405,40,208,350,270,215,343
-8ann.png,8nonann.png,16/02/2018,14,M,US,GE Healthcare,Left,9lbs,55.4,71.4,54,72,Dislocated Lt hip,Baseline,US 6 Weeks,Left,,,1,4.08233133,59,224,350,270,234,359
-9ann.png,9nonann.png,12/3/2018,39,F,US,GE Healthcare,Left,7lbs 11ozs,57,77,58,70,Breech Presentation,Baseline,US 8 Weeks,Unknown,,,1,3.486991344,125,205,350,270,300,340
-10ann.png,10nonann.png,6/3/2018,34,F,US,GE Healthcare,Right,3.52kg,60.5,72.6,58,73,Breech Presentation/Family history of DDH,Baseline,US 6 Weeks,Left,,,1,3.52,40,175,350,270,215,310
-11ann.png,11nonann.png,6/3/2018,34,F,US,GE Healthcare,Left,3.52kg,54,79.8,51,80,Breech Presentation/Family history of DDH,Baseline,US 6 Weeks,Left,,,1,3.52,122,182,350,270,297,317
-12ann.png,12nonann.png,16/03/2018,45,M,US,GE Healthcare,Left,3.575kg,66,65,66,65,Clinical abnormality,Baseline,Discharged,Normal,,,0,3.575,70,224,350,270,245,359
-13ann.png,13nonann.png,16/03/2018,48,F,US,GE Healthcare,Right,8lbs 5ozs,64.8,75,60,75,Clinical abnormality/ Positional foot deformity,Baseline,Discharged,Normal,,,0,3.770486576,56,211,350,270,231,346
-14ann.png,14nonann.png,16/03/2018,48,F,US,GE Healthcare,Left,8lbs 5ozs,62,72,62,72,Clinical abnormality/ Positional foot deformity,Baseline,Discharged,Normal,,,0,3.770486576,75,193,350,270,250,328
-15ann.png,15nonann.png,16/03/2018,48,M,US,GE Healthcare,Left,Unreccorded,65,67,65,66,Positional foot deformity,Baseline,Discharged,Normal,,,0,Unreccorded,73,204,350,270,248,339
-16ann.png,16nonann.png,16/03/2018,49,F,US,GE Healthcare,Right,6lbs 7ozs,61,76,61,76,Breech Presentation,Baseline,Discharged,Normal,,,0,2.920000882,50,161,350,270,225,296
-17ann.png,17nonann.png,16/03/2018,49,F,US,GE Healthcare,Left,6lbs 7ozs,61,77,61,77,Breech Presentation,Baseline,Discharged,Normal,,,0,2.920000882,94,190,350,270,269,325
-18ann.png,18nonann.png,16/03/2018,49,M,US,GE Healthcare,Left,Unreccorded,64.3,69.7,62,69,Family History of DDH,Baseline,Discharged,Normal,,,0,Unreccorded,67,179,350,270,242,314
-19ann.png,19nonann.png,27/02/2018,89,M,US,GE Healthcare,Left,6lbs 14ozs,64.5,70.9,63,55,Twin Pregnancy,Baseline,Discharged,Normal,,,0,3.118447544,54,208,350,270,229,343
-20ann.png,20nonann.png,27/02/2018,89,F,US,GE Healthcare,Left,5lbs 6ozs,61,71.14,58,70,Twin Pregnancy,Baseline,Discharged,Normal,,,0,2.438058989,44,209,350,270,219,344
-21ann.png,21nonann.png,12/3/2018,107,M,US,GE Healthcare,Left,7lbs 10ozs,57.8,77,57,79,Family History of DDH,Baseline,US 6-8 Weeks,Unknown,,,1,3.458641821,74,223,350,270,249,358
-22ann.png,22nonann.png,16/03/2018,51,M,US,GE Healthcare,Left,11lbs 11ozs,70.4,65,69,70,Breech Presentation,Baseline,Discharged,Normal,,,0,5.301360824,1,202,350,270,176,337
-23ann.png,23nonann.png,16/03/2018,51,M,US,GE Healthcare,Left,6lbs 13ozs,62.8,68,64,66,Clicky hip ,Baseline,Discharged,Normal,,,0,3.090098021,55,190,350,270,230,325
-24ann.png,24nonann.png,16/03/2018,51,M,US,GE Healthcare,Left,1.940kg,68,69,68,69,Twin pregnancy,Baseline,Discharged,Normal,,,0,1.94,31,193,350,270,206,328
-25ann.png,25nonann.png,16/03/2018,51,M,US,GE Healthcare,Left,2.295kg,64,62.5,61,65,Twin pregnancy,Baseline,Discharged,Normal,,,0,2.295,25,178,350,270,200,313
-26ann.png,26nonann.png,16/03/2018,51,F,US,GE Healthcare,Left,3.79kg,57,74,59,70,Family History of DDH,Baseline,US 8-10 Weeks,Unknown,,,1,3.79,125,230,350,270,300,365
-27ann.png,27nonann.png,16/03/2018,52,M,US,GE Healthcare,Left,7lbs 6ozs,59,69,60,67,Breech Presentation,Baseline,US 8 Weeks,Unknown,,,1,3.345243729,90,188,350,270,265,323
-28ann.png,28nonann.png,16/03/2018,53,M,US,GE Healthcare,Left,6lbs 5ozs,61.2,76,62,77,Breech Presentation,Baseline,Discharged,Normal,,,0,2.863301836,38,201,350,270,213,336
-29ann.png,29nonann.png,15/03/2018,54,F,US,GE Healthcare,Left,8lbs 1oz,65,68.4,60,71,Positional foot deformity,Baseline,Discharged,Normal,,,0,3.657088483,87,182,350,270,262,317
-30ann.png,30nonann.png,13/03/2018,52,M,US,GE Healthcare,Right,4.11kg,57.6,76.9,60,75,Family History of DDH,Baseline,US 6 Weeks,Both,,,1,4.11,36,175,350,270,211,310
+﻿File Name,Match 1,Match 2,Study Date,Age (weeks),Patient Sex,Modality,Manufacturer,Side,Birthweight,C Alpha,C Beta,Alpha,Beta,Indication,Time,Outcome,Side affected,Review Physio,Comment,Binary Outcome,Birthweight in kg,X-pos for BB,Y-pos for BB,Width for BB,Height for BB,Center point X Coordinate,Center point Y Coordinate,,,,
+0ann.png,0nonann.png,0nonann_cropped.png,12/3/2018,18,M,US,GE Healthcare,Right,Unreccorded,59.6,77.3,60,74,Arthrogryposis/Foot deformity,Baseline,US 1-2 Weeks,Left,,,1,Unreccorded,125,128,350,270,300,263,,,,
+1ann.png,1nonann.png,1nonann_cropped.png,22/02/2018,4,M,US,GE Healthcare,Left,7lbs 15ozs,40,86.4,44,83,Dislocated hip/Left leg shorter/calcaneovalgus Rt > Lt,Baseline,US 2-3 Weeks,Left,,,1,3.600389437,110,146,350,270,285,281,,,,
+2ann.png,2nonann.png,2nonann_cropped.png,12/3/2018,86,F,US,GE Healthcare,Left,7lbs 3ozs,55.2,78,53,87,Family History of DDH,Baseline,US 4-6 Weeks,Left,,,1,3.260195159,62,227,350,270,237,362,,,,
+3ann.png,3nonann.png,3nonann_cropped.png,16/03/2018,37,M,US,GE Healthcare,Right,7lbs 7ozs,67,71,65,71,Family History of DDH,Baseline,Discharged,Normal,,,0,3.373593252,86,163,350,270,261,298,,,,
+4ann.png,4nonann.png,4nonann_cropped.png,16/03/2018,37,M,US,GE Healthcare,Left,7lbs 7ozs,70,68.2,68,69,Family History of DDH,Baseline,Discharged,Normal,,,0,3.373593252,121,181,350,270,296,316,,,,
+5ann.png,5nonann.png,5nonann_cropped.png,12/3/2018,34,M,US,GE Healthcare,Left,8lbs 11ozs,61.7,74.6,60,77,Breech Presentation,Baseline,Discharged,Normal,,,0,3.940583714,79,212,350,270,254,347,,,,
+6ann.png,6nonann.png,6nonann_cropped.png,16/03/2018,64,M,US,GE Healthcare,Left,3.132kg,63.9,68.7,63,68,Clinical abnormality,Baseline,Discharged,Normal,,,0,3.132,63,179,350,270,238,314,,,,230
+7ann.png,7nonann.png,7nonann_cropped.png,12/3/2018,35,M,US,GE Healthcare,Left,6lbs 8ozs,62.3,69.7,58,69,Breech Presentation,Baseline,Discharged,Normal,,,0,2.948350405,40,208,350,270,215,343,,,,
+8ann.png,8nonann.png,8nonann_cropped.png,16/02/2018,14,M,US,GE Healthcare,Left,9lbs,55.4,71.4,54,72,Dislocated Lt hip,Baseline,US 6 Weeks,Left,,,1,4.08233133,59,224,350,270,234,359,,,,
+9ann.png,9nonann.png,9nonann_cropped.png,12/3/2018,39,F,US,GE Healthcare,Left,7lbs 11ozs,57,77,58,70,Breech Presentation,Baseline,US 8 Weeks,Unknown,,,1,3.486991344,125,205,350,270,300,340,,,,
+10ann.png,10nonann.png,10nonann_cropped.png,6/3/2018,34,F,US,GE Healthcare,Right,3.52kg,60.5,72.6,58,73,Breech Presentation/Family history of DDH,Baseline,US 6 Weeks,Left,,,1,3.52,40,175,350,270,215,310,,,,
+11ann.png,11nonann.png,11nonann_cropped.png,6/3/2018,34,F,US,GE Healthcare,Left,3.52kg,54,79.8,51,80,Breech Presentation/Family history of DDH,Baseline,US 6 Weeks,Left,,,1,3.52,122,182,350,270,297,317,,,,
+12ann.png,12nonann.png,12nonann_cropped.png,16/03/2018,45,M,US,GE Healthcare,Left,3.575kg,66,65,66,65,Clinical abnormality,Baseline,Discharged,Normal,,,0,3.575,70,224,350,270,245,359,,,,
+13ann.png,13nonann.png,13nonann_cropped.png,16/03/2018,48,F,US,GE Healthcare,Right,8lbs 5ozs,64.8,75,60,75,Clinical abnormality/ Positional foot deformity,Baseline,Discharged,Normal,,,0,3.770486576,56,211,350,270,231,346,,,,
+14ann.png,14nonann.png,14nonann_cropped.png,16/03/2018,48,F,US,GE Healthcare,Left,8lbs 5ozs,62,72,62,72,Clinical abnormality/ Positional foot deformity,Baseline,Discharged,Normal,,,0,3.770486576,75,193,350,270,250,328,,,,
+15ann.png,15nonann.png,15nonann_cropped.png,16/03/2018,48,M,US,GE Healthcare,Left,Unreccorded,65,67,65,66,Positional foot deformity,Baseline,Discharged,Normal,,,0,Unreccorded,73,204,350,270,248,339,,,,
+16ann.png,16nonann.png,16nonann_cropped.png,16/03/2018,49,F,US,GE Healthcare,Right,6lbs 7ozs,61,76,61,76,Breech Presentation,Baseline,Discharged,Normal,,,0,2.920000882,50,161,350,270,225,296,,,,
+17ann.png,17nonann.png,17nonann_cropped.png,16/03/2018,49,F,US,GE Healthcare,Left,6lbs 7ozs,61,77,61,77,Breech Presentation,Baseline,Discharged,Normal,,,0,2.920000882,94,190,350,270,269,325,,,,
+18ann.png,18nonann.png,18nonann_cropped.png,16/03/2018,49,M,US,GE Healthcare,Left,Unreccorded,64.3,69.7,62,69,Family History of DDH,Baseline,Discharged,Normal,,,0,Unreccorded,67,179,350,270,242,314,,,,
+19ann.png,19nonann.png,19nonann_cropped.png,27/02/2018,89,M,US,GE Healthcare,Left,6lbs 14ozs,64.5,70.9,63,55,Twin Pregnancy,Baseline,Discharged,Normal,,,0,3.118447544,54,208,350,270,229,343,,,,
+20ann.png,20nonann.png,20nonann_cropped.png,27/02/2018,89,F,US,GE Healthcare,Left,5lbs 6ozs,61,71.14,58,70,Twin Pregnancy,Baseline,Discharged,Normal,,,0,2.438058989,44,209,350,270,219,344,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

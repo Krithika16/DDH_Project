@@ -25,8 +25,8 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
 
     def __init__(self,
         #Note: to get cropped scans, change the directory below and the width and height when calling this to 350x270
-        imagedir = '/home/krithika/DDH_Project/DDH_Project/cropped_hip_images/', #insert here the directory where you store the hip images
-        anglecsv =  'Final_data_sample.csv', #insert here the file location of the csv with the patient data
+        imagedir = '/home/krithika/DDH_Project/DDH_Project/cropped_hip_images', #insert here the directory where you store the hip images
+        anglecsv =  '/home/krithika/DDH_Project/DDH_Project/Final_data_sample.csv', #insert here the file location of the csv with the patient data
         width = 350,    #insert here the image width
         height = 270,   #insert here the image height
         ratio1 = 0.8,   #this is the percentage for training, in this case 80%
@@ -84,7 +84,6 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
         with open(self.anglecsv) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:      #as seen below you can use calpha or alpha, in this case the standard one used is calpha
-
                 #If you are using cropped scans, Use Match 2. If you are using uncropped scans, use Match 1
                 # Get key and format key
                 key = row['Match 2']    #Match 1 contains the image name of the nonannotated images
