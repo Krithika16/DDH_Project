@@ -4,7 +4,7 @@ WORKDIR /home/krithika/DDH_Project/DDH_Project/
 
 # Install tensorflow and reqs
 RUN pip install -U pip
-RUN pip install -U tensorflow
+RUN pip install -U tensorflow==2.4.0
 RUN pip install -U tensorflow-addons
 RUN pip install sklearn
 RUN pip install pandas
