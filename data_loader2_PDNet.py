@@ -28,7 +28,7 @@ class Stats:
 class DataGenerator2:       #data generator2 is to use alpha or calpha as the diagnostic parameter
 
     def __init__(self,
-        imagedir = 'C:\Year_4_Courses\Masters_Project\Deep_learning_DDH\cropped_hip_images\\', #insert here the directory where you store the hip images
+        imagedir = '/home/krithika/DDH_Project/DDH_Project/cropped_hip_images/', #insert here the directory where you store the hip images
         anglecsv =  'Final_data_sample.csv', #insert here the file location of the csv with the patient data
         width = 350,    #insert here the image width
         height = 270,   #insert here the image height
@@ -72,7 +72,7 @@ class DataGenerator2:       #data generator2 is to use alpha or calpha as the di
             reader = csv.DictReader(csvfile)
 
             for row in reader:
-                key = row['Match 2']    #Match 1 contains the image name of the nonannotated images
+                key = row['Match 2']    #Match 1 contains the image name of the nonannotated uncropped images
                 if row['Indication'] != ' '\
                 and row['Outcome'] != ' ' \
                 and row['Birthweight in kg'] != '0' and row['Birthweight in kg'] != 'Unreccorded' and row['Birthweight in kg'] != 'Unknown' and row['Birthweight in kg'] != 'Unknown ':

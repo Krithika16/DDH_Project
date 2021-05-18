@@ -17,7 +17,7 @@ from tensorflow.keras.callbacks import LearningRateScheduler, ReduceLROnPlateau,
 from tensorflow.keras.metrics import MeanSquaredError
 import matplotlib.pyplot as plt
 from data_loader2_PDNet import DataGenerator2    #for this classifier we import only DataGenerator2 since we are using the alpha angle
-from model import conv0, conv1, conv2, conv3, resnet, PDnet1, PDnet2, PDnet3
+from model import PDnet1, PDnet2, PDnet3
 import math
 from tensorflow.keras.models import load_model, Model
 import h5py
@@ -28,9 +28,9 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
 
   # Training Parameters
   epochs = 3 #going through the dataset 50 times
-  batch_size = 16 #Number of samples passed through CNN at one time for training data
-  test_batch_size = 8 #batch size for testing data
-  val_batch_size = 8 #batch size for validation data
+  batch_size = 32 #Number of samples passed through CNN at one time for training data
+  test_batch_size = 16 #batch size for testing data
+  val_batch_size = 16 #batch size for validation data
 
   # Import Dataset. For auto-cropped images, use width = 350 and height = 270.
   #For uncropped images, use: width and height = 256 (which is what Marta used, though the actual image size is 500x500.)
@@ -134,12 +134,12 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
 
 
   #This section of code below chooses the model and compiles it with the necessary hyperparameters
-  model = resnet3(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION);  #model chosen is patientDetModel
+  model = PDnet1(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION);  #model chosen is patientDetModel
 
 
   #Note: compile configures the model for training BUT DOESN'T TRAIN IT
   #Note: recall is sensitivity while precision is positive predictive value
-  model.compile(optimizer=Adam(learning_rate=0.001), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.002), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary() #prints information about the model that was trained
 
   # Prepare callbacks

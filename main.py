@@ -8,8 +8,8 @@ import tensorflow as tf
 
 
 if __name__ == '__main__': #This code is run when the main.py file is run
-  
-  Classify2_croppedScans()
+
+  #Classify2_croppedScans()
  # Classify2_uncroppedScans()
   #AutoCrop() #Use this to train the autocropping network
-  #Classify2_PDNet()    #Use this to train the patient details network
+  Classify2_PDNet()    #Use this to train the patient details network
