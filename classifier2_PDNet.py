@@ -28,9 +28,9 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
 
   # Training Parameters
   epochs = 40 #going through the dataset 50 times
-  batch_size = 32 #Number of samples passed through CNN at one time for training data
-  test_batch_size = 16 #batch size for testing data
-  val_batch_size = 16 #batch size for validation data
+  batch_size = 16 #Number of samples passed through CNN at one time for training data
+  test_batch_size = 8 #batch size for testing data
+  val_batch_size = 8 #batch size for validation data
 
   # Import Dataset. For auto-cropped images, use width = 350 and height = 270.
   #For uncropped images, use: width and height = 256 (which is what Marta used, though the actual image size is 500x500.)
