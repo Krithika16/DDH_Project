@@ -134,7 +134,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
 
 
   #This section of code below chooses the model and compiles it with the necessary hyperparameters
-  model = PDnet1(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION);  #model chosen is patientDetModel
+  model = PDnet2(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION);  #model chosen is patientDetModel
 
 
   #Note: compile configures the model for training BUT DOESN'T TRAIN IT
@@ -151,7 +151,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   import datetime
   file_time = datetime.datetime.today().strftime('_%Y-%m-%d__%I-%M')  #get date and time for today for filename
   #This is a way to save the model weights after every epoch in case training is interrupted
-  checkpoint = ModelCheckpoint("results/tf2/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
+  checkpoint = ModelCheckpoint("results/PDNet2/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
     save_best_only=True, save_weights_only = True, mode='max', save_freq='epoch')
   #FIT TRAINS THE MODEL FOR A FIXED NUMBER OF EPOCHS (ITERATIONS ON A DATASET)
   #print(math.ceil((num_val_examples/val_batch_size)*2))
@@ -179,7 +179,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   print('Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[6], (end - start)) )   #note sensitivity=recall
   print('Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds' % (evaluation[7], (end - start)) )   #note sensitivity=recall
 
-  model.save('results/tf2/classifier_' + file_time + '.h5')     #save model weights in h5 file
+  model.save('results/PDNet2/classifier_' + file_time + '.h5')     #save model weights in h5 file
 
   plt.close()
 
@@ -221,7 +221,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   fig.suptitle("Classification Time Elapsed: %.2f seconds" % ((end - start)))
   plt.subplots_adjust(top=0.85)
   plt.subplots_adjust(wspace=0.5, hspace=0.5)
-  fig.savefig('results/tf2/classifier1_' + file_time + '.png')
+  fig.savefig('results/PDNet2/classifier1_' + file_time + '.png')
 
   plt.close()
 
@@ -263,7 +263,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   fig1.suptitle("Classification Time Elapsed: %.2f seconds" % ((end - start)))
   plt.subplots_adjust(top=0.85)
   plt.subplots_adjust(wspace=0.5, hspace=0.5)
-  fig1.savefig('results/tf2/classifier2_' + file_time + '.png')
+  fig1.savefig('results/PDNet2/classifier2_' + file_time + '.png')
 
 
   plt.close()
@@ -274,7 +274,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title('Classify Summary: Test Accuracy: %.2f Time Elapsed: %.2f seconds' % (evaluation[1], (end - start)))
   plt.legend(["Train Accuracy", "Validation Accuracy"], loc="upper left")
-  plt.savefig('results/tf2/classifier_' + file_time + '.png')   #save graph
+  plt.savefig('results/PDNet2/classifier_' + file_time + '.png')   #save graph
   plt.close()
 
   print(model.metrics_names)
@@ -286,7 +286,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test Loss: %.2f Time Elapsed: %.2f seconds" % (evaluation[0], (end - start)))
   plt.legend(["Train Loss", "Validation Loss"], loc="upper left")
-  plt.savefig('results/tf2/loss_' + file_time + '.png') #save loss graph
+  plt.savefig('results/PDNet2/loss_' + file_time + '.png') #save loss graph
   plt.close()
 
   # Plot Sensitivity
@@ -296,7 +296,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test Sensitivity: %.2f Time Elapsed: %.2f seconds" % (evaluation[2], (end - start)))
   plt.legend(["Train Sensitivity", "Validation Sensitivity"], loc="upper left")
-  plt.savefig('results/tf2/sensitivity_' + file_time + '.png')  #save sensitivity graph
+  plt.savefig('results/PDNet2/sensitivity_' + file_time + '.png')  #save sensitivity graph
   plt.close()
 
   # Plot Specificity
@@ -306,7 +306,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test Specificity: %.2f Time Elapsed: %.2f seconds" % (evaluation[3], (end - start)))
   plt.legend(["Train Specificity", "Validation Specificity"], loc="upper left")
-  plt.savefig('results/tf2/specificity_' + file_time + '.png')  #save specificity graph
+  plt.savefig('results/PDNet2/specificity_' + file_time + '.png')  #save specificity graph
   plt.close()
 
   # Plot AUC
@@ -316,7 +316,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test AUC: %.2f Time Elapsed: %.2f seconds" % (evaluation[4], (end - start)))
   plt.legend(["Train AUC", "Validation AUC"], loc="upper left")
-  plt.savefig('results/tf2/auc_' + file_time + '.png')  #save AUC graph
+  plt.savefig('results/PDNet2/auc_' + file_time + '.png')  #save AUC graph
   plt.close()
 
   # Plot NPV
@@ -326,7 +326,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test NPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[5], (end - start)))
   plt.legend(["Train NPV", "Validation NPV"], loc="upper left")
-  plt.savefig('results/tf2/npv_' + file_time + '.png')  #save NPV graph
+  plt.savefig('results/PDNet2/npv_' + file_time + '.png')  #save NPV graph
   plt.close()
 
   # Plot PPV
@@ -336,7 +336,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[6], (end - start)))
   plt.legend(["Train PPV", "Validation PPV"], loc="upper left")
-  plt.savefig('results/tf2/ppv_' + file_time + '.png')  #save PPV graph
+  plt.savefig('results/PDNet2/ppv_' + file_time + '.png')  #save PPV graph
   plt.close()
 
   # Plot MCC
@@ -346,7 +346,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   plt.xlabel("Epochs")
   plt.title("Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds" % (evaluation[7], (end - start)))
   plt.legend(["Train MCC", "Validation MCC"], loc="upper left")
-  plt.savefig('results/tf2/mcc_' + file_time + '.png')  #save MCC graph
+  plt.savefig('results/PDNet2/mcc_' + file_time + '.png')  #save MCC graph
   plt.close()
 
 
