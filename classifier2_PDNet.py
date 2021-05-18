@@ -151,15 +151,15 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
   import datetime
   file_time = datetime.datetime.today().strftime('_%Y-%m-%d__%I-%M')  #get date and time for today for filename
   #This is a way to save the model weights after every epoch in case training is interrupted
-  checkpoint = ModelCheckpoint("results/tf2/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
-    save_best_only=True, save_weights_only = True, mode='max', save_freq='epoch')
+  #checkpoint = ModelCheckpoint("results/tf2/saveweights/best_model" + file_time + ".hdf5", monitor='val_binary_accuracy', verbose=1,
+    #save_best_only=True, save_weights_only = True, mode='max', save_freq='epoch')
   #FIT TRAINS THE MODEL FOR A FIXED NUMBER OF EPOCHS (ITERATIONS ON A DATASET)
   history = model.fit(train_dataset,
           epochs=epochs,
           steps_per_epoch= int((num_train_examples/batch_size)*2),
           validation_data=val_dataset,
-          validation_steps = math.ceil((num_val_examples/val_batch_size)*2),
-          callbacks = [checkpoint])
+          validation_steps = math.ceil((num_val_examples/val_batch_size)*2))#,
+          #callbacks = [checkpoint])
 
 
   #This tests the model that was trained in the previous step - https://www.machinecurve.com/index.php/2020/11/03/how-to-evaluate-a-keras-model-with-model-evaluate/
