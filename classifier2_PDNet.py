@@ -139,7 +139,7 @@ def Classify2_PDNet():    #again specifiy the function to be 2 and hence refere 
 
   #Note: compile configures the model for training BUT DOESN'T TRAIN IT
   #Note: recall is sensitivity while precision is positive predictive value
-  model.compile(optimizer=Adam(learning_rate=0.0001), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.013), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary() #prints information about the model that was trained
 
   # Prepare callbacks
