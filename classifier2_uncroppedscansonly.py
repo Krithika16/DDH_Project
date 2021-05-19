@@ -21,7 +21,7 @@ import tensorflow.keras.backend as K
 def Classify2_uncroppedScans():    #again specifiy the function to be 2 and hence refere to the alpha angle
 
   # Training Parameters
-  epochs = 40
+  epochs = 50
   batch_size = 32
   test_batch_size = 16
   val_batch_size = 16
