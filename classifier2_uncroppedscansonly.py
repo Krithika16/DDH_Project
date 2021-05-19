@@ -112,6 +112,8 @@ def Classify2_uncroppedScans():    #again specifiy the function to be 2 and henc
   print('Classify Summary: Test PPV: %.2f Time Elapsed: %.2f seconds' % (evaluation[6], (end - start)) )   #note sensitivity=recall
   print('Classify Summary: Test MCC: %.2f Time Elapsed: %.2f seconds' % (evaluation[7], (end - start)) )   #note sensitivity=recall
 
+  model.save('results/classifier_uncroppedscans/classifier_' + file_time + '.h5')     #save model weights in h5 file
+
   plt.close()
 
   #Creating subplots so that we only have 2 big figures instead of 8 figures
@@ -280,41 +282,6 @@ def Classify2_uncroppedScans():    #again specifiy the function to be 2 and henc
   plt.savefig('results/classifier_uncroppedscans/mcc_' + file_time + '.png')  #save MCC graph
   plt.close()
 
-  #if more parameters are to be evaluated the evaluation summary should be brought to find how these are ordered
-  """
-  # Plot Accuracy
-  plt.plot(history.history["binary_accuracy"])
-  plt.plot(history.history["val_binary_accuracy"])
-  plt.ylabel("Accuracy")
-  plt.xlabel("Epochs")
-  plt.title('Classify Summary: Test Accuracy: %.2f Time Elapsed: %.2f seconds' % (evaluation[1], (end - start)))
-  plt.legend(["Train Accuracy", "Validation Accuracy"], loc="upper left")
-
-
-  plt.savefig('results/classifier_croppedscans/classifier_' + file_time + '.png')   #save graph
-  model.save('results/classifier_croppedscans/classifier_' + file_time + '.h5')     #save model weights in h5 file
-  plt.close()
-
-
-  # Plot Loss
-  plt.plot(history.history["loss"])
-  plt.plot(history.history["val_loss"])
-  plt.ylabel("Loss")
-  plt.xlabel("Epochs")
-  plt.title("Classify Summary: Test Loss: %.2f Time Elapsed: %.2f seconds" % (evaluation[0], (end - start)))
-  plt.legend(["Train Loss", "Validation Loss"], loc="upper left")
-  plt.savefig('results/classifier_croppedscans/loss_' + file_time + '.png') #save loss graph
-  plt.close()
-
-  # Plot Sensitivity
-  plt.plot(history.history["recall"])
-  plt.plot(history.history["val_recall"])
-  plt.ylabel("Sensitivity")
-  plt.xlabel("Epochs")
-  plt.title("Classify Summary: Test Sensitivity: %.2f Time Elapsed: %.2f seconds" % (evaluation[2], (end - start)))
-  plt.legend(["Train Sensitivity", "Validation Sensitivity"], loc="upper left")
-  plt.savefig('results/classifier_croppedscans/sensitivity_' + file_time + '.png')  #save sensitivity graph
-  """
 #Definitions of additional custom metrics that are used to evaluate the model - https://medium.com/analytics-vidhya/custom-metrics-for-keras-tensorflow-ae7036654e05
 def specificity(y_true, y_pred):
     tn = K.sum(K.round(K.clip((1 - y_true) * (1 - y_pred), 0, 1)))
