@@ -81,7 +81,7 @@ def Classify2_uncroppedScans():    #again specifiy the function to be 2 and henc
   NUM_OUTPUTS = 1
 
   model = resnet2(HEIGHT, WIDTH, CHANNELS, NUM_OUTPUTS);  #model chosen is resnet2
-  model.compile(optimizer=Adam(learning_rate=0.005), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
+  model.compile(optimizer=Adam(learning_rate=0.009), loss='binary_crossentropy', metrics=['binary_accuracy', tf.keras.metrics.Recall(), specificity, tf.keras.metrics.AUC(), negative_predictive_value, positive_predictive_value, matthews_correlation_coefficient]) #very important line about model characteristics
   model.summary()
 
 
