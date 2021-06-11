@@ -378,3 +378,17 @@ def PDnet3(NUM_FEATURES, NUM_OUTPUTS, NUM_SIDE, NUM_GENDER, NUM_INDICATION):
      "side" : inputSide, "indication" : inputIndication, "birthweight" : inputBirthweight},  outputs) #[inputs, inputGender, inputSide, inputIndication, inputBirthweight, inputAlpha, inputBeta]
 
     return model
+
+def ensembleNet():
+    he_init = keras.initializers.he_normal(seed=None)
+
+    #The inputs for this network are the predictions gotten from the resnet trained with cropped images and the trained PDNet1
+    inputScan = keras.Input(shape = (1), name = 'scansOnlyModel')
+    inputPDScan = keras.Input(shape = (1), name = 'scansPDModel')
+
+    x = layers.Concatenate(axis = 1)([inputScan, inputPDScan])
+    output = layers.Dense(1, activation = 'sigmoid')(x)
+
+    model = keras.Model({"scansOnlyModel" : inputScan, "scansPDModel" :inputPDScan}, output)
+
+    return model
